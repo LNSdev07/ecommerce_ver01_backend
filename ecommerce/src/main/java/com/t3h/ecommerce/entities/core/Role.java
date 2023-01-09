@@ -4,6 +4,7 @@ import com.t3h.ecommerce.entities.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,6 +21,6 @@ public class Role extends BaseEntity {
     @Column(name = "code", nullable = false, length = 20)
     private String code;
 
-    @OneToOne(mappedBy = "role")
-    private User user;
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    private List<User> user;
 }

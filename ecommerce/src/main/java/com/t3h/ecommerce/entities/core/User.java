@@ -3,6 +3,7 @@ package com.t3h.ecommerce.entities.core;
 
 import com.t3h.ecommerce.entities.BaseEntity;
 import com.t3h.ecommerce.entities.order.Orders;
+import com.t3h.ecommerce.entities.product.Category;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,30 +27,33 @@ public class User extends BaseEntity {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "additional_info", columnDefinition = "text")
-    private String additionalInfo;
-
-    // default pwd: pw123aA@Gamjfykatj0N
     @Column(name = "password", nullable = false)
     private String password;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     @Column(name = "full_name")
     private String fullName;
 
     @Column(name = "gender")
-    private String gender;
+    private Integer gender;
 
-    @Column(name = "dob")
-    private Long dob;
+    @Column(name = "city")
+    private String city;
 
-    @Column(name = "department")
-    private String department;
+    @Column(name = "country")
+    private String country;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
+
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
     private Role role;
 
 

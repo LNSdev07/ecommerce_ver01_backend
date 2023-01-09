@@ -18,7 +18,7 @@ public class Review extends BaseEntity {
     @Column(name = "rating")
     private Float rating;
 
-    @Column(name = "comment")
+    @Column(name = "comment", columnDefinition = "text")
     private String comment;
 
     @ManyToOne

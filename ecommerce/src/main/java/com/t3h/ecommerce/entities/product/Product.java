@@ -23,10 +23,10 @@ public class Product extends BaseEntity {
     @Column(name = "product_name")
     private String productName;
 
-    @Column(name = "short_description")
+    @Column(name = "short_description", length = 500)
     private String shortDescription;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "text")
     private String description;
 
     @Column(name = "cost")
