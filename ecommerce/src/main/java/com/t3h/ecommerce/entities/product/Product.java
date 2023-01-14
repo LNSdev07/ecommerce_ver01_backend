@@ -3,6 +3,7 @@ package com.t3h.ecommerce.entities.product;
 import com.t3h.ecommerce.entities.BaseEntity;
 import com.t3h.ecommerce.entities.order.OrderDetail;
 import com.t3h.ecommerce.entities.order.Orders;
+import com.t3h.ecommerce.entities.voucher.Voucher;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,9 +18,6 @@ public class Product extends BaseEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "product_name")
     private String productName;
 
@@ -28,6 +26,9 @@ public class Product extends BaseEntity {
 
     @Column(name = "description", columnDefinition = "text")
     private String description;
+
+    @Column(name ="img_avt")
+    private String imgAvt;
 
     @Column(name = "cost")
     private Double cost;
@@ -57,5 +58,11 @@ public class Product extends BaseEntity {
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<OrderDetail> orderDetails;
+
+    @ManyToMany
+    @JoinTable(name = "product_voucher",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "voucher_id"))
+    private  List<Voucher> vouchers;
 
 }

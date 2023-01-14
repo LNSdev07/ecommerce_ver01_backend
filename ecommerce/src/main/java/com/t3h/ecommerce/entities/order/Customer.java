@@ -1,6 +1,7 @@
 package com.t3h.ecommerce.entities.order;
 
 import com.t3h.ecommerce.entities.BaseEntity;
+import com.t3h.ecommerce.entities.voucher.Voucher;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -59,4 +60,10 @@ public class Customer extends BaseEntity {
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Orders> orders;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "customer_voucher",
+    joinColumns= @JoinColumn(name = "customer_id"),
+    inverseJoinColumns = @JoinColumn(name = "voucher_id"))
+    private List<Voucher> vouchers;
 }

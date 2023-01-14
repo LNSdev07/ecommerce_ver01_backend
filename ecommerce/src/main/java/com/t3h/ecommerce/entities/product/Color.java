@@ -19,6 +19,9 @@ public class Color extends BaseEntity {
     @Column(name = "color_name")
     private String colorName;
 
+    @Column(name ="color_code")
+    private String colorCode;
+
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;

@@ -15,8 +15,8 @@ public class Size extends BaseEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "sign")
-    private String sign;
+    @Column(name = "size_code")
+    private String signCode;
 
     @Column(name = "size_name")
     private String sizeName;
