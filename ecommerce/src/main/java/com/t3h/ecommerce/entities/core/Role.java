@@ -15,12 +15,10 @@ public class Role extends BaseEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private RoleName roleName;
 
-    @Column(name = "code", nullable = false, length = 20)
-    private String code;
 
-    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
+    @ManyToMany( mappedBy = "roles",fetch = FetchType.LAZY)
     private List<User> user;
 }

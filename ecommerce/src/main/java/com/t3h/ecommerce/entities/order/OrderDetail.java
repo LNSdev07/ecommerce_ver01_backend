@@ -31,6 +31,9 @@ public class OrderDetail extends BaseEntity {
     @Column(name = "date_allocated")
     private Long dateAllocated;
 
+    @Column(name = "total_money")
+    private long totalMoney;
+
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Orders orders;
