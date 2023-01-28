@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class SignUpForm {
     private String userName;
     private String password;
+    private String fullName;
     private String email;
-    private String role ="USER";
+    private String avatar;
 }

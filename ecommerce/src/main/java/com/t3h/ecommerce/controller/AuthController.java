@@ -51,15 +51,17 @@ public class AuthController {
    @PostMapping("/signup")
    public ResponseEntity<?> register(@Valid @RequestBody SignUpForm signUpForm){
       if(userService.existsByUsername(signUpForm.getUserName())){
-         return new ResponseEntity<>(new ResponseMessage("the username is exsited"), HttpStatus.OK);
+         return new ResponseEntity<>(new ResponseMessage("nouser"), HttpStatus.OK);
       }
       else if(userService.existsByEmail(signUpForm.getEmail())){
-         return new ResponseEntity<>(new ResponseMessage("the email is existed"), HttpStatus.OK);
+         return new ResponseEntity<>(new ResponseMessage("noemail"), HttpStatus.OK);
       }
 
       User user = new User(signUpForm.getUserName(),
               passwordEncoder.encode(signUpForm.getPassword()),
-              signUpForm.getEmail()
+              signUpForm.getEmail(),
+              signUpForm.getFullName(),
+              signUpForm.getAvatar()
       );
       List<Role> roles = new ArrayList<>();
       Role userRole = roleService.findByRoleName(RoleName.USER).orElseThrow(() -> new RuntimeException("Role not found"));
@@ -67,7 +69,7 @@ public class AuthController {
       user.setRoles(roles);
 
       userService.save(user);
-      return new ResponseEntity<>(new ResponseMessage("create user success"), HttpStatus.OK);
+      return new ResponseEntity<>(new ResponseMessage("success"), HttpStatus.OK);
    }
 
    @PostMapping("/signin")
@@ -83,6 +85,7 @@ public class AuthController {
       UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
       return new ResponseEntity<>(new JwtResponse(token,
               userPrinciple.getFullName(),
-              userPrinciple.getAuthorities()), HttpStatus.OK);
+              userPrinciple.getAuthorities(),
+              userPrinciple.getAvatar()), HttpStatus.OK);
    }
 }

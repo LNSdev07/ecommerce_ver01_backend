@@ -27,6 +27,9 @@ public class UserPrinciple implements UserDetails {
 
     private String email;
 
+    private String avatar;
+
+
     private Collection<? extends  GrantedAuthority> roles;
 
 
@@ -41,7 +44,7 @@ public class UserPrinciple implements UserDetails {
         return new UserPrinciple(
                 user.getId(), user.getUsername(),
                 user.getPassword(), user.getFullName(),
-                user.getEmail(), authorities
+                user.getEmail(), user.getAvatar(), authorities
         );
 
     }

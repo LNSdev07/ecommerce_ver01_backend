@@ -22,11 +22,14 @@ public class User extends BaseEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "status")
+    @Column(name = "status", columnDefinition = "integer default 1")
     private Integer status;
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "avatar", columnDefinition = "text")
+    private String avatar;
 
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -51,8 +54,15 @@ public class User extends BaseEntity {
         this.password = password;
         this.email = email;
     }
+    public User(String username, String password, String email, String fullName, String avatar) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.fullName = fullName;
+        this.avatar = avatar;
+    }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -61,4 +71,5 @@ public class User extends BaseEntity {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Orders> orders;
+
 }
