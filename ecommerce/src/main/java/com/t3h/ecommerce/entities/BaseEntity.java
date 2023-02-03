@@ -1,5 +1,6 @@
 package com.t3h.ecommerce.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,4 +24,11 @@ public abstract class BaseEntity {
     @LastModifiedDate
     protected Long updatedDate;
 
+    public BaseEntity(Long createdDate, Long updatedDate) {
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
+    }
+
+    public BaseEntity() {
+    }
 }

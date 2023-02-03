@@ -13,4 +13,7 @@ public class SignUpForm {
     private String fullName;
     private String email;
     private String avatar;
+    private Integer gender;
+    private String phoneNumber;
+    private String address;
 }

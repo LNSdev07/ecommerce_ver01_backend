@@ -76,4 +76,14 @@ public class ProductServiceImpl implements ProductService {
            return  gson.toJson(response);
        }
     }
+
+    @Override
+    public Boolean deleteProductByCatagory(String id) {
+            try{
+                repository.deleteProductByCategoryId(Long.parseLong(id.trim()));
+                return true;
+            }catch (Exception ex){
+                return false;
+            }
+    }
 }

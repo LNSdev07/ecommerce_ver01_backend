@@ -22,7 +22,7 @@ public class User extends BaseEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "status", columnDefinition = "integer default 1")
+    @Column(name = "status",columnDefinition = "integer default 1")
     private Integer status;
 
     @Column(name = "email")
@@ -54,12 +54,16 @@ public class User extends BaseEntity {
         this.password = password;
         this.email = email;
     }
-    public User(String username, String password, String email, String fullName, String avatar) {
+    public User(String username, String password, String email, String fullName, String avatar,
+                Integer gender, String phoneNumber, String address) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.fullName = fullName;
         this.avatar = avatar;
+        this.gender = gender;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
     }
 
     @ManyToMany(fetch = FetchType.EAGER)

@@ -41,4 +41,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                                @Param("listColorCode") List<String> listColorCode,
                                @Param("testEmptySize") Integer testEmptySize,
                                @Param("listSizeCode") List<String> listSizeCode);
+
+
+    @Query("DELETE FROM Product P WHERE P.category = :Id")
+    void deleteProductByCategoryId(@Param("Id") Long Id);
 }

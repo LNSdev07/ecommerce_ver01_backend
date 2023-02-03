@@ -51,7 +51,8 @@ public class ProfileDetailController {
         try{
             user = userService.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
             ProfileResponse profileResponse = new ProfileResponse(
-                    user.getUsername(), user.getFullName(), user.getEmail()
+                    user.getUsername(), user.getFullName(), user.getEmail(),
+                    user.getPhoneNumber(), user.getAddress(), user.getGender()
             );
             return new ResponseEntity<>(profileResponse, HttpStatus.OK);
 
