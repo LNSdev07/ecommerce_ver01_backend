@@ -48,14 +48,14 @@ public class CategoryServiceImpl implements CategoryService {
             Page<Category> page = repository.findCategory(pageable, searchIsEmpty, pageRequest.getTextSearch());
 
             if (page.getContent().isEmpty() || page.getContent() == null) {
-                return new PageResponse<>(list, 0, "fail", 309);
+                return new PageResponse<>(list, 0,0l, "fail", 309);
             } else {
                 list = page.getContent().stream().map(CategoryDTO::new).collect(Collectors.toList());
 
-                return new PageResponse<>(list, page.getTotalPages(),  "success", 200);
+                return new PageResponse<>(list, page.getTotalPages(),page.getTotalElements(),  "success", 200);
             }
         } catch (Exception ex) {
-            return new PageResponse<>(list, 0, "fail", 309);
+            return new PageResponse<>(list, 0,0l, "fail", 309);
         }
     }
 
@@ -76,7 +76,7 @@ public class CategoryServiceImpl implements CategoryService {
              return findCategory(new PageRequest("", 0, 6));
         }
         else{
-            return new PageResponse<>(list, 0, "fail", 309);
+            return new PageResponse<>(list, 0,0l, "fail", 309);
         }
     }
 

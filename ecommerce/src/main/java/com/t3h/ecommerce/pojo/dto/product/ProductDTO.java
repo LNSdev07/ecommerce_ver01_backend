@@ -7,10 +7,14 @@ import org.springframework.beans.BeanUtils;
 
 @Data
 public class ProductDTO {
-    private Integer id;
+    private Long id;
     private String productName;
     private Double cost;;
     private String url;
+    private Long quantity;
+    private String shortDescription;
+    private Long createdDate;
+    private Long updatedDate;
 
     public ProductDTO(ProductDB product){
         BeanUtils.copyProperties(product,this);

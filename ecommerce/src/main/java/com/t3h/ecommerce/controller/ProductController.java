@@ -1,6 +1,8 @@
 package com.t3h.ecommerce.controller;
 
 
+import com.t3h.ecommerce.dto.request.PageRequest;
+import com.t3h.ecommerce.dto.response.PageResponse;
 import com.t3h.ecommerce.pojo.dto.product.ProductDTO;
 import com.t3h.ecommerce.pojo.response.TableRespone;
 import com.t3h.ecommerce.pojo.resquest.TableFilter;
@@ -33,5 +35,13 @@ public class ProductController {
                               @RequestParam(name = "sizes", required = false, defaultValue = "") String sizes,
                               @RequestParam(name = "page", required = false, defaultValue = "1") String page ){
         return service.findProductWithFilter(sorts, colors, sizes, page);
+
     }
+
+
+    @PostMapping("api/products")
+    public PageResponse<ProductDTO> findProduct(@RequestBody @Valid PageRequest pageRequest){
+        return  service.findProduct(pageRequest);
+    }
+
 }

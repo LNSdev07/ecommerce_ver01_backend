@@ -14,6 +14,7 @@ import java.util.List;
 public class PageResponse<T> {
     private List<T> data = Collections.emptyList();
     private Integer totalPage;
+    private Long totalItems;
     private String message;
     private Integer httpStatusCode;
 }

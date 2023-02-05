@@ -45,4 +45,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query("DELETE FROM Product P WHERE P.category = :Id")
     void deleteProductByCategoryId(@Param("Id") Long Id);
+
+
+
+    @Query("SELECT P FROM Product P WHERE ( (P.productName LIKE '' OR LOWER(P.productName) LIKE CONCAT('%', LOWER(:textSearch), '%')) AND " +
+            "(P.cost between :minCost and :maxCost) AND (P.quantity between :minQuantity and :maxQuantity))")
+    Page<Product> findProduct(Pageable pageable,
+                              @Param("textSearch") String textSearch,
+                              @Param("minCost") Double minCost,
+                              @Param("maxCost") Double maxCost,
+                              @Param("minQuantity") Long minQuantity,
+                              @Param("maxQuantity") Long maxQuantity);
 }
