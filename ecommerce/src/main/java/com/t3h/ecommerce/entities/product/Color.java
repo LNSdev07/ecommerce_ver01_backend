@@ -5,6 +5,7 @@ import com.t3h.ecommerce.entities.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,8 +23,23 @@ public class Color extends BaseEntity {
     @Column(name ="color_code")
     private String colorCode;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @ManyToMany(mappedBy = "colors", fetch = FetchType.LAZY )
+    private List<Product> product;
 
+    public Color() {
+
+    }
+
+    public Color(Long createdDate, Long updatedDate, String colorName, String colorCode) {
+        super(createdDate, updatedDate);
+        this.colorName = colorName;
+        this.colorCode = colorCode;
+    }
+
+    public Color(Long createdDate, Long updatedDate, Long id, String colorName, String colorCode) {
+        super(createdDate, updatedDate);
+        this.id = id;
+        this.colorName = colorName;
+        this.colorCode = colorCode;
+    }
 }

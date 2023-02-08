@@ -4,6 +4,7 @@ import com.t3h.ecommerce.entities.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,7 +23,26 @@ public class Discount extends BaseEntity {
     @Column(name = "discount_percent")
     private Float discountPercent;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @ManyToMany(mappedBy = "discounts", fetch = FetchType.LAZY)
+    private List<Product> product;
+
+
+    public Discount(Long createdDate, Long updatedDate,
+                    Long id, String discountName, Float discountPercent) {
+        super(createdDate, updatedDate);
+        this.id = id;
+        this.discountName = discountName;
+        this.discountPercent = discountPercent;
+    }
+
+    public Discount(Long createdDate, Long updatedDate,
+                    String discountName, Float discountPercent) {
+        super(createdDate, updatedDate);
+        this.discountName = discountName;
+        this.discountPercent = discountPercent;
+    }
+
+    public Discount() {
+
+    }
 }
